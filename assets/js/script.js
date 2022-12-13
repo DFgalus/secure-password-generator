@@ -12,7 +12,7 @@ var passwordCriteria = {
   pwdLength: 0,
   upper: ["A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P","Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
   lower: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
-  num: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  numb: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
   sym: ["!", "?", "%", "*", "+", "&"],
 }
 
@@ -50,11 +50,11 @@ function generatePassword() {
   var passwordLength = 0;
   var upperCase;
   var lowerCase;
-  var numericChars;
-  var specialChars;
+  var numbers;
+  var symbols;
   //characters
   var passwordLength = 0;
-  passwordCriteria.pwdLength = 0;
+  passwordCriteria.passwordLength = 0;
   generatedPwd = " ";
 
   // 1. Prompt user for the password crtiteria
@@ -82,7 +82,7 @@ function generatePassword() {
         
         while (passwordCriteria.pwdLength < passwordLength) {
           //if statement to make sure the user selects at least one of the criteria  
-          if (lowerCase === false && uppercase === false && numbers === false && symbols === false) {
+          if (lowerCase === false && upperCase === false && numbers === false && symbols === false) {
             alert("You must select at least one criteria of lowercase, uppercase, numbers or special characters")
             
             // 2. Validate the users input
@@ -91,7 +91,7 @@ function generatePassword() {
           else {
             
             if (lowerCase === true && passwordCriteria.pwdLength < passwordLength) {
-              var lc = passwordCriteria.lowerCase[Math.floor(Math.random() * 26)]
+              var lc = passwordCriteria.lower[Math.floor(Math.random() * 26)]
               generatedPwd = generatedPwd + lc;
               passwordCriteria.pwdLength++;
               
@@ -101,24 +101,24 @@ function generatePassword() {
                    
             if (specialChars === true && passwordCriteria.pwdLength < passwordLength) {
               // 3. Generate the password based on the users criteria
-              var sc = passwordCriteria.specialChars[Math.floor(Math.random() * 6)]
+              var sc = passwordCriteria.sym[Math.floor(Math.random() * 6)]
               generatedPwd = generatedPwd + sc;
               passwordCriteria.pwdLength++;
-              return generatedPwd;
+              
             }
 
            
             //update passwordLength by 1
             if (upperCase === true && passwordCriteria.pwdLength < passwordLength) {
-              var uc = passwordCriteria.upperCase[Math.floor(Math.random() * 26)]
+              var uc = passwordCriteria.upper[Math.floor(Math.random() * 26)]
               generatedPwd = generatedPwd + uc;
               passwordCriteria.pwdLength++;
               
             }
 
             
-            if (numericChars === true && passwordCriteria.pwdLength < passwordLength) {
-              var num = passwordCriteria.numericChars[Math.floor(Math.random() * 10)]
+            if (numbers === true && passwordCriteria.pwdLength < passwordLength) {
+              var num = passwordCriteria.numb[Math.floor(Math.random() * 10)]
               generatedPwd = generatedPwd + num;
               passwordCriteria.pwdLength++;
               
